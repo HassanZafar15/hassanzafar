@@ -1,20 +1,38 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Hassan Zafar — Portfolio
 
-# Run and deploy your AI Studio app
+A portfolio website showcasing senior Flutter and mobile app development work.
 
-This contains everything you need to run your app locally.
+**Live site:** [hassanzafar.netlify.app](https://hassanzafar.netlify.app/)
 
-View your app in AI Studio: https://ai.studio/apps/b3e4673d-e0bb-4e5b-8a65-8bf98823eb93
+## Tech Stack
+
+- React + TypeScript
+- Vite
+- Tailwind CSS
+- Motion (animations)
 
 ## Run Locally
 
-**Prerequisites:**  Node.js
-
+**Prerequisites:** Node.js 18+
 
 1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+   ```bash
+   npm install
+   ```
+2. Run the development server:
+   ```bash
+   npm run dev
+   ```
+3. Open [http://localhost:3000](http://localhost:3000)
+
+## Build for Production
+
+```bash
+npm run build
+```
+
+The output is generated in the `dist/` folder, ready for deployment to Netlify or similar platforms.
+
+## Deploy
+
+This project is configured for static hosting. Build the project and deploy the `dist/` directory to your hosting provider.

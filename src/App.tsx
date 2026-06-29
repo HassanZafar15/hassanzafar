@@ -85,6 +85,22 @@ const CustomCursor = () => {
   return <div ref={cursorRef} className={`custom-cursor hidden md:block ${isHovered ? "expanded" : ""}`} style={{ transform: "translate(-50%, -50%)" }} />;
 };
 
+const FiveStars = () => (
+  <div className="flex gap-0.5" aria-label="5 out of 5 stars">
+    {Array.from({ length: 5 }).map((_, i) => (
+      <Star key={i} size={14} className="fill-amber-400 text-amber-400" />
+    ))}
+  </div>
+);
+
+const getInitials = (name: string) =>
+  name
+    .split(" ")
+    .map((part) => part[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+
 const StarRating = ({ rating, count }: { rating: number; count?: string }) => (
   <div className="flex items-center gap-2">
     <div className="star-rating">
@@ -178,7 +194,7 @@ const Navigation = () => {
       });
     }, { threshold: 0.35 });
 
-    const sections = ["hero", "about", "skills", "experience", "projects", "contact"];
+    const sections = ["hero", "about", "skills", "experience", "projects", "testimonials", "contact"];
     sections.forEach(section => {
       const el = document.getElementById(section);
       if (el) observer.observe(el);
@@ -187,7 +203,7 @@ const Navigation = () => {
     return () => observer.disconnect();
   }, []);
 
-  const navItems = ["About", "Skills", "Experience", "Projects", "Contact"];
+  const navItems = ["About", "Skills", "Experience", "Projects", "Testimonials", "Contact"];
 
   return (
     <nav className={`fixed top-0 left-0 w-full z-[90] nav-bg glass border-b border-white/10 ${isScrolled ? "scrolled" : ""}`}>
@@ -894,6 +910,110 @@ const Projects = () => {
   );
 };
 
+const Testimonials = () => {
+  const testimonials = [
+    {
+      name: "Jaquan Wells",
+      date: "Sep 2025",
+      review: "Hassan is a Flutter expert. I highly recommend him.",
+      project: "Simple Weather App (iOS & Android)",
+      badges: ["Committed to Quality"],
+    },
+    {
+      name: "Ummati Softwares",
+      date: "Oct 2023 – May 2024",
+      review: null,
+      project: "Flutter Developer — Part-Time (Tjwal Net)",
+      badges: ["Reliable"],
+    },
+    {
+      name: "Alihaider Alihaider",
+      date: "Sep 2023",
+      review:
+        "It was a pleasure to work with Hassan on this project. The project was completed efficiently and within the expected timeframe. He was responsive and available to provide clarification and answers. Highly recommended!",
+      project: "Small Flutter App",
+      badges: ["Collaborative", "Clear Communicator", "Reliable"],
+    },
+    {
+      name: "Yogesh Gajera",
+      date: "Aug 2023",
+      review: "Hassan Zafar is an amazing person. Done the job successfully before time.",
+      project: "Android App Development",
+      badges: ["Reliable"],
+    },
+  ];
+
+  return (
+    <section id="testimonials" className="py-28 sm:py-32 px-4 sm:px-6 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-500/[0.02] to-transparent pointer-events-none" />
+      <div className="max-w-7xl mx-auto relative z-10">
+        <Reveal className="mb-16 text-center md:text-left">
+          <span className="badge-pill badge-featured mb-5">Testimonials</span>
+          <h3 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-4 text-primary leading-tight">
+            What clients say
+          </h3>
+          <p className="text-secondary text-base md:text-lg">
+            4 completed jobs · 5.0 average rating on Upwork
+          </p>
+          <div className="section-divider mt-8 hidden md:block" />
+        </Reveal>
+
+        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+          {testimonials.map((item, i) => (
+            <Reveal key={i} className="stagger-item h-full">
+              <div className="testimonial-card glass h-full rounded-3xl p-6 sm:p-8 border border-white/5 flex flex-col transition-all hover:border-accent/20 hover:-translate-y-1">
+                <div className="flex items-center gap-4 mb-5">
+                  <div className="w-11 h-11 rounded-full bg-accent/15 border border-accent/25 flex items-center justify-center shrink-0">
+                    <span className="font-display font-bold text-accent text-sm">
+                      {getInitials(item.name)}
+                    </span>
+                  </div>
+                  <div className="min-w-0">
+                    <p className="font-semibold text-primary truncate">{item.name}</p>
+                    <p className="text-xs text-secondary">{item.date}</p>
+                  </div>
+                </div>
+
+                <FiveStars />
+
+                {item.review ? (
+                  <blockquote className="text-secondary text-sm leading-relaxed my-5 flex-grow">
+                    &ldquo;{item.review}&rdquo;
+                  </blockquote>
+                ) : (
+                  <p className="text-secondary text-sm leading-relaxed my-5 flex-grow italic">
+                    Long-term Flutter development contract for the Tjwal Net app.
+                  </p>
+                )}
+
+                <div className="border-t border-white/5 pt-5 mt-auto">
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-3">
+                    {item.project}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {item.badges.map((badge) => (
+                      <span
+                        key={badge}
+                        className="text-[10px] font-semibold px-3 py-1 rounded-full bg-accent/10 text-accent border border-accent/20"
+                      >
+                        {badge}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
+        <p className="text-center text-xs text-slate-600 mt-12">
+          All reviews are from Upwork
+        </p>
+      </div>
+    </section>
+  );
+};
+
 const Contact = () => {
   return (
     <section id="contact" className="py-28 sm:py-32 px-4 sm:px-6">
@@ -984,6 +1104,7 @@ export default function App() {
         <Skills />
         <Experience />
         <Projects />
+        <Testimonials />
         <Contact />
       </main>
       <Footer />

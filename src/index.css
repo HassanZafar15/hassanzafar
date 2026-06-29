@@ -242,6 +242,14 @@
     transform: translateY(-6px);
   }
 
+  .testimonial-card {
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .testimonial-card:hover {
+    box-shadow: 0 8px 40px rgba(56, 189, 248, 0.08);
+  }
+
   .star-rating {
     display: inline-flex;
     align-items: center;

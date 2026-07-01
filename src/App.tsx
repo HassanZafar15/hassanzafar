@@ -424,7 +424,7 @@ const Navigation = () => {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-[100] nav-bg ${isScrolled ? "scrolled" : ""}`} aria-label="Main navigation">
       <div
-        className={`max-w-[1320px] mx-auto flex justify-between items-center transition-all duration-500 ${
+        className={`nav-inner max-w-[1320px] mx-auto flex justify-between items-center transition-all duration-500 ${
           isScrolled ? "py-4 px-6 md:px-12" : "py-7 px-6 md:px-12"
         }`}
       >
@@ -450,11 +450,11 @@ const Navigation = () => {
           ))}
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="hidden lg:flex items-center gap-3">
           <a
             href="/projects/Senior_Flutter_Developer_Hassan_Zafar.pdf"
             download="Senior_Flutter_Developer_Hassan_Zafar.pdf"
-            className="hidden md:inline-flex nav-cta"
+            className="nav-cta"
           >
             <span>
               <Download size={14} className="inline mr-1 -mt-0.5" aria-hidden="true" />
@@ -463,15 +463,17 @@ const Navigation = () => {
           </a>
           <a
             href="#contact"
-            className="hidden sm:inline-flex nav-cta"
+            className="nav-cta"
             onClick={(e) => handleAnchorClick(e, "contact")}
           >
             <span>Let&apos;s talk →</span>
           </a>
+        </div>
+        <div className="flex items-center gap-2 lg:hidden">
           <button
             type="button"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden nav-menu-btn text-primary"
+            className="nav-menu-btn text-primary"
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMenuOpen}
           >
@@ -508,6 +510,13 @@ const Navigation = () => {
             >
               <Download size={16} />
               Download Resume
+            </a>
+            <a
+              href="#contact"
+              onClick={(e) => handleAnchorClick(e, "contact", () => setIsMenuOpen(false))}
+              className="flex items-center justify-center gap-2 mt-3 btn-outline w-full"
+            >
+              Let&apos;s talk →
             </a>
           </motion.div>
         )}

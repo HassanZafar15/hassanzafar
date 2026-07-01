@@ -227,7 +227,7 @@
     font-size: 13px;
     font-weight: 500;
     color: var(--text);
-    padding: 10px 24px;
+    padding: 10px 20px;
     min-height: 44px;
     border: 1px solid var(--border2);
     border-radius: 2px;
@@ -237,6 +237,8 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 
   .nav-cta::before {
@@ -533,8 +535,8 @@
     grid-template-columns: 1fr;
     grid-template-areas:
       "heading"
-      "portrait"
       "desc"
+      "portrait"
       "meta";
     gap: 28px;
     align-items: start;
@@ -2041,7 +2043,8 @@
   @media (max-width: 768px) {
     .hero-h1 { letter-spacing: -2px; }
     .hero-layout { gap: 24px; }
-    .hero-portrait-wrap { max-width: 180px; }
+    .hero-portrait-wrap { max-width: 160px; margin-top: 4px; }
+    .nav-inner { padding-left: 20px !important; padding-right: 20px !important; }
     .rev-grid { grid-template-columns: 1fr; gap: 12px; margin-top: 48px; }
     .projects-showcase { padding: 80px 0 64px; }
     .projects-showcase-header { margin-bottom: 40px; flex-direction: column; align-items: flex-start; }
